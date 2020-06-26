@@ -1,0 +1,27 @@
+{
+  "name": "action-update-posts",
+  "version": "0.0.0",
+  "repository": "git@github.com:TryGhost/action-update-posts.git",
+  "author": "Ghost Foundation",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build",
+    "lint": "eslint . --ext .js --cache",
+    "preship": "yarn build",
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "devDependencies": {
+    "@zeit/ncc": "0.22.3",
+    "eslint": "7.3.1",
+    "eslint-plugin-ghost": "1.5.0"
+  },
+  "dependencies": {
+    "@actions/core": "1.2.4",
+    "@tryghost/admin-api": "1.2.0"
+  }
+}

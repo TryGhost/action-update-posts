@@ -1,0 +1,24 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  api-url:
+    description: 'Ghost Admin API Url'
+    required: true
+  api-key:
+    description: 'Ghost Admin API Key'
+    required: true
+  tag:
+    description: 'Update posts with this tag only'
+    required: true
+  field:
+    description: 'Field that should be updated'
+    required: true
+  value:
+    description: 'Value the field will be updated to'
+    required: true
+  days:
+    description: 'Number of days after published to update the post'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
