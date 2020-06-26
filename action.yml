@@ -8,16 +8,16 @@ inputs:
     description: 'Ghost Admin API Key'
     required: true
   tag:
-    description: 'Update posts with this tag only'
+    description: 'The tag to lookup to find posts to update e.g. `hash-early-access`'
     required: true
   field:
-    description: 'Field that should be updated'
+    description: 'The post field that you want to update e.g. `visibility` or `featured`'
     required: true
   value:
-    description: 'Value the field will be updated to'
+    description: 'The new value for the field e.g. `public` or `false`'
     required: true
   days:
-    description: 'Number of days after published to update the post'
+    description: 'Number of days after the post was published to update the post'
     required: true
 runs:
   using: 'node12'

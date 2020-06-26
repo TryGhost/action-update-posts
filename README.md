@@ -35,6 +35,21 @@ This will run once per day at midnight. It will find all posts tagged with `#ear
 
 4. Tweak the configuration values to whatever you like, and then commit and push your changes.
 
+## Configuration
+
+The `with` portion of the workflow **must** be configured before the action will work. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
+
+| Key  | Value Information | Type | Required |
+| ------------- | ------------- | ------------- | ------------- |
+| `api-url`  | The base URL of your Ghost Admin API, found by configuring a new Custom Integration in Ghost Admin&raquo;Integrations | `secrets` | **Yes** |
+| `api-key`  | The authentication key for your Ghost Admin API, found by configuring a new Custom Integration in Ghost Admin&raquo;Integrations | `secrets` | **Yes** |
+| `tag` | The tag to lookup to find posts to update e.g. `hash-early-access` | `string` | Yes |
+| `field` | The post field that you want to update e.g. `visibility` or `featured` | `string` | Yes |
+| `value` | The new value for the field e.g. `public` or `false` | `string` | Yes |
+| `days` | Number of days after the post was published to update the post e.g. 30 | `number` | Yes |
+
+&nbsp;
+
 <p align="center">Don't forget to 🌟 Star 🌟 the repo if you like this GitHub Action !</p>
 
 # Copyright & License
