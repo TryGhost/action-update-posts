@@ -636,6 +636,19 @@ function serial(list, iterator, callback)
 const core = __webpack_require__(470);
 const GhostAdminApi = __webpack_require__(455);
 
+// Convert boolean strings to true booleans
+const getValue = () => {
+    let value = core.getInput('value');
+
+    if (value === 'true') {
+        value = true;
+    } else if (value === 'false') {
+        value = false;
+    }
+
+    return value;
+};
+
 const calculateDaysSince = (date) => {
     const now = new Date();
     const then = new Date(date);
@@ -653,7 +666,7 @@ const calculateDaysSince = (date) => {
 
         const tag = core.getInput('tag');
         const field = core.getInput('field');
-        const value = core.getInput('value');
+        const value = getValue();
         const days = core.getInput('days');
 
         const posts = await api.posts.browse({filter: `tag:${tag}`});
