@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build",
-    "lint": "eslint . --ext .js --cache",
+    "lint": "eslint . --ignore-pattern dist --ext .js --cache",
     "preship": "yarn build",
     "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi"
   },
