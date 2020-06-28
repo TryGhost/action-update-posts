@@ -657,9 +657,8 @@ const calculateDaysSince = (date) => {
         const days = core.getInput('days');
 
         const posts = await api.posts.browse({filter: `tag:${tag}`});
-        const updates = [];
 
-        posts.forEach((post) => {
+        await Promise.all(posts.map(async (post) => {
             const differenceInDays = calculateDaysSince(post.published_at);
 
             console.log(`Post ${post.title} published ${differenceInDays} days ago`);
@@ -667,16 +666,12 @@ const calculateDaysSince = (date) => {
             // If enough days have passed, we will update the post
             if (differenceInDays > days) {
                 post[field] = value;
-                updates.push(api.posts.edit(post));
                 console.log(`Updating post ${post.title}`);
+                await api.posts.edit(post);
             } else {
                 console.log(`Not updating post ${post.title}, ${days - differenceInDays + 1} days to go`);
             }
-        });
-
-        if (updates.length > 1) {
-            return Promise.all(updates);
-        }
+        }));
     } catch (err) {
         console.error(err);
         process.exit(1);
