@@ -1,5 +1,22 @@
 # Action Update Posts
 
+<p align="center">
+  <a href="https://ghost.org">
+    <img src="https://user-images.githubusercontent.com/120485/43974508-b64b2fe8-9cd2-11e8-8e58-707254b8817c.png" width="140px" alt="Ghost" />
+  </a>
+</p>
+<h3 align="center">Update Ghost Posts on a schedule</h3>
+
+<p align="center">
+    This <a href="https://github.com/features/actions">GitHub action</a> allows you to automatically update any fields of any <a href="https://ghost.org">Ghost</a> post <br>
+    on a schedule from GitHub via the Ghost Admin API!
+</p>
+
+---
+
+&nbsp;
+
+
 ## Getting Started
 
 💡This action expects that you already have a working Ghost install running at least v3.20.0
@@ -11,10 +28,10 @@
 3. Once your secrets are in place, copy this example config into `.github/workflows/update-posts.yml`.
 
 ```yml
-name: Update Early Access Posts
+name: Update Ghost Posts
 on:
   schedule:
-    - cron: "00 00 * * *"
+    - cron: "01 00 * * *"
 jobs:
   deploy:
     runs-on: ubuntu-18.04
@@ -31,9 +48,13 @@ jobs:
           days: 30
 ```
 
-This will run once per day at midnight. It will find all posts tagged with `#early-access`, and if the were published more than 30 days ago, will update the `visibility` field to `public`.
+Using the schedule `"01 00 * * *"` will run this action once per day at one minute past midnight. For testing purposes, you may wish to use `""*/5 * * * *"`, which will run every 5 minutes.
 
-4. Tweak the configuration values to whatever you like, and then commit and push your changes.
+The example `with` configuration will find all posts tagged with `#early-access`, and if they were published more than 30 days ago, will update the `visibility` field to `public`.
+
+
+4. Tweak the `tag`, `field`, `value` and `days` configuration values to whatever you like, and then commit and push your changes.
+
 
 ## Configuration
 
@@ -47,6 +68,20 @@ The `with` portion of the workflow **must** be configured before the action will
 | `field` | The post field that you want to update e.g. `visibility` or `featured` | `string` | Yes |
 | `value` | The new value for the field e.g. `public` or `false` | `string` | Yes |
 | `days` | Number of days after the post was published to update the post e.g. 30 | `number` | Yes |
+
+### Examples
+
+
+
+```yml
+with:
+  api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
+  api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+  tag: 'hash-sponsored'
+  field: 'featured'
+  value: 'false'
+  days: 7
+```
 
 &nbsp;
 

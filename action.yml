@@ -1,5 +1,8 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Update Ghost Posts'
+description: 'Schedule updates to your Ghost posts'
+branding:
+  icon: 'cloud-lightning'
+  color: 'gray-dark'
 inputs:
   api-url:
     description: 'Ghost Admin API Url'
