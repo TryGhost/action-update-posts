@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Update Ghost Posts
-        uses: TryGhost/action-update-posts@v0.0.1
+        uses: TryGhost/action-update-posts@v0
         with:
           api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
           api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
