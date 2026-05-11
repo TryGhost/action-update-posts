@@ -34,9 +34,9 @@ on:
     - cron: "01 00 * * *"
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Update Ghost Posts
         uses: TryGhost/action-update-posts@v0
         with:
@@ -48,7 +48,7 @@ jobs:
           days: 30
 ```
 
-Using the schedule `"01 00 * * *"` will run this action once per day at one minute past midnight. For testing purposes, you may wish to use `""*/5 * * * *"`, which will run every 5 minutes.
+Using the schedule `"01 00 * * *"` will run this action once per day at one minute past midnight. For testing purposes, you may wish to use `"*/5 * * * *"`, which will run every 5 minutes.
 
 The example `with` configuration will find all posts tagged with `#early-access`, and if they were published more than 30 days ago, will update the `visibility` field to `public`.
 
