@@ -5,6 +5,9 @@
   "author": "Ghost Foundation",
   "license": "MIT",
   "main": "index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "ncc build",
     "lint": "eslint . --ignore-pattern dist --ext .js --cache",
