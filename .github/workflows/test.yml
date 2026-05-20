@@ -7,6 +7,7 @@ on:
       - 'renovate/*'
 jobs:
   lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,4 +16,13 @@ jobs:
           node-version: 20
       - run: yarn
       - run: yarn lint
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: yarn
       - run: yarn test
