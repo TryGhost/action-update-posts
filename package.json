@@ -4,6 +4,7 @@
   "repository": "git@github.com:TryGhost/action-update-posts.git",
   "author": "Ghost Foundation",
   "license": "MIT",
+  "type": "module",
   "main": "index.js",
   "engines": {
     "node": ">=22.0.0"
