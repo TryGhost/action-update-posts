@@ -23,6 +23,17 @@ const calculateDaysSince = (date, now = new Date()) => {
     return Math.round((now - then) / DAY_IN_MS);
 };
 
+const getDays = (coreModule = core) => {
+    const daysInput = coreModule.getInput('days');
+    const days = Number(daysInput);
+
+    if (!Number.isInteger(days) || days < 0) {
+        throw new Error(`Invalid "days" input: "${daysInput}". Expected a non-negative integer.`);
+    }
+
+    return days;
+};
+
 const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
     const posts = await api.posts.browse({filter: `tag:${tag}`});
 
@@ -56,7 +67,7 @@ const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logge
         tag: coreModule.getInput('tag'),
         field: coreModule.getInput('field'),
         value: getValue(coreModule),
-        days: coreModule.getInput('days'),
+        days: getDays(coreModule),
         logger
     });
 };
@@ -76,6 +87,7 @@ if (require.main === module) {
 
 module.exports = {
     calculateDaysSince,
+    getDays,
     getValue,
     main,
     run,

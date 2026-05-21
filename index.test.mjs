@@ -3,6 +3,7 @@ import action from './index.js';
 
 const {
     calculateDaysSince,
+    getDays,
     getValue,
     run,
     updatePosts
@@ -31,6 +32,18 @@ describe('calculateDaysSince', () => {
     });
 });
 
+describe('getDays', () => {
+    it('converts days input to a number', () => {
+        expect(getDays(createCore({days: '30'}))).toBe(30);
+    });
+
+    it('rejects invalid days input', () => {
+        expect(() => getDays(createCore({days: '7.5'}))).toThrow('Invalid "days" input: "7.5"');
+        expect(() => getDays(createCore({days: '-1'}))).toThrow('Invalid "days" input: "-1"');
+        expect(() => getDays(createCore({days: 'tomorrow'}))).toThrow('Invalid "days" input: "tomorrow"');
+    });
+});
+
 describe('updatePosts', () => {
     it('edits posts older than the configured number of days', async () => {
         const oldPost = {
@@ -56,7 +69,7 @@ describe('updatePosts', () => {
             tag: 'hash-early-access',
             field: 'visibility',
             value: 'public',
-            days: '30',
+            days: 30,
             now: new Date('2026-02-01T00:00:00.000Z'),
             logger
         });
@@ -87,7 +100,7 @@ describe('updatePosts', () => {
             tag: 'hash-news',
             field: 'featured',
             value: false,
-            days: '7',
+            days: 7,
             now: new Date('2026-02-01T00:00:00.000Z'),
             logger
         });
