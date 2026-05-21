@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-const core = require('@actions/core');
-const GhostAdminApi = require('@tryghost/admin-api');
+import * as core from '@actions/core';
+import GhostAdminApi from '@tryghost/admin-api';
+import {fileURLToPath} from 'node:url';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 // Convert boolean strings to true booleans
-const getValue = (coreModule = core) => {
+export const getValue = (coreModule = core) => {
     let value = coreModule.getInput('value');
 
     if (value === 'true') {
@@ -17,13 +18,13 @@ const getValue = (coreModule = core) => {
     return value;
 };
 
-const calculateDaysSince = (date, now = new Date()) => {
+export const calculateDaysSince = (date, now = new Date()) => {
     const then = new Date(date);
 
     return Math.round((now - then) / DAY_IN_MS);
 };
 
-const getDays = (coreModule = core) => {
+export const getDays = (coreModule = core) => {
     const daysInput = coreModule.getInput('days');
     const normalizedDaysInput = String(daysInput).trim();
 
@@ -34,7 +35,7 @@ const getDays = (coreModule = core) => {
     return Number.parseInt(normalizedDaysInput, 10);
 };
 
-const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
+export const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
     const posts = await api.posts.browse({filter: `tag:${tag}`});
 
     await Promise.all(posts.map(async (post) => {
@@ -55,7 +56,7 @@ const updatePosts = async ({api, tag, field, value, days, now = new Date(), logg
     }));
 };
 
-const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logger = console} = {}) => {
+export const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logger = console} = {}) => {
     const api = new GhostAdminApiClass({
         url: coreModule.getInput('api-url'),
         key: coreModule.getInput('api-key'),
@@ -72,7 +73,7 @@ const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logge
     });
 };
 
-const main = async () => {
+export const main = async () => {
     try {
         await run();
     } catch (err) {
@@ -81,15 +82,6 @@ const main = async () => {
     }
 };
 
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
     main();
 }
-
-module.exports = {
-    calculateDaysSince,
-    getDays,
-    getValue,
-    main,
-    run,
-    updatePosts
-};

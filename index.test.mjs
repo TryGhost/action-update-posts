@@ -1,13 +1,11 @@
 import {describe, expect, it, vi} from 'vitest';
-import action from './index.js';
-
-const {
+import {
     calculateDaysSince,
     getDays,
     getValue,
     run,
     updatePosts
-} = action;
+} from './index.js';
 
 const createCore = inputs => ({
     getInput: vi.fn(name => inputs[name])
