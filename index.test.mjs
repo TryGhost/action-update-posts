@@ -132,7 +132,7 @@ describe('run', () => {
             days: '0'
         });
         const logger = {log: vi.fn()};
-        const GhostAdminApiClass = vi.fn((config) => {
+        const GhostAdminApiClass = vi.fn(function (config) {
             expect(config).toEqual({
                 url: 'https://example.com',
                 key: 'key',
