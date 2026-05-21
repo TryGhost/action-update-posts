@@ -2,9 +2,11 @@
 const core = require('@actions/core');
 const GhostAdminApi = require('@tryghost/admin-api');
 
+const DAY_IN_MS = 1000 * 60 * 60 * 24;
+
 // Convert boolean strings to true booleans
-const getValue = () => {
-    let value = core.getInput('value');
+const getValue = (coreModule = core) => {
+    let value = coreModule.getInput('value');
 
     if (value === 'true') {
         value = true;
@@ -15,44 +17,67 @@ const getValue = () => {
     return value;
 };
 
-const calculateDaysSince = (date) => {
-    const now = new Date();
+const calculateDaysSince = (date, now = new Date()) => {
     const then = new Date(date);
 
-    return Math.round((now - then) / (1000 * 60 * 60 * 24));
+    return Math.round((now - then) / DAY_IN_MS);
 };
 
-(async function main() {
+const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
+    const posts = await api.posts.browse({filter: `tag:${tag}`});
+
+    await Promise.all(posts.map(async (post) => {
+        const differenceInDays = calculateDaysSince(post.published_at, now);
+
+        logger.log(`Post "${post.title}" published ${differenceInDays} days ago`);
+
+        // If enough days have passed, we will update the post
+        if (differenceInDays > days) {
+            post[field] = value;
+            logger.log(`Updating post "${post.title}"`);
+            await api.posts.edit(post);
+
+            return;
+        }
+
+        logger.log(`Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`);
+    }));
+};
+
+const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logger = console} = {}) => {
+    const api = new GhostAdminApiClass({
+        url: coreModule.getInput('api-url'),
+        key: coreModule.getInput('api-key'),
+        version: 'canary'
+    });
+
+    await updatePosts({
+        api,
+        tag: coreModule.getInput('tag'),
+        field: coreModule.getInput('field'),
+        value: getValue(coreModule),
+        days: coreModule.getInput('days'),
+        logger
+    });
+};
+
+const main = async () => {
     try {
-        const api = new GhostAdminApi({
-            url: core.getInput('api-url'),
-            key: core.getInput('api-key'),
-            version: 'canary'
-        });
-
-        const tag = core.getInput('tag');
-        const field = core.getInput('field');
-        const value = getValue();
-        const days = core.getInput('days');
-
-        const posts = await api.posts.browse({filter: `tag:${tag}`});
-
-        await Promise.all(posts.map(async (post) => {
-            const differenceInDays = calculateDaysSince(post.published_at);
-
-            console.log(`Post "${post.title}" published ${differenceInDays} days ago`);
-
-            // If enough days have passed, we will update the post
-            if (differenceInDays > days) {
-                post[field] = value;
-                console.log(`Updating post "${post.title}"`);
-                await api.posts.edit(post);
-            } else {
-                console.log(`Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`);
-            }
-        }));
+        await run();
     } catch (err) {
         console.error(err);
         process.exit(1);
     }
-}());
+};
+
+if (require.main === module) {
+    main();
+}
+
+module.exports = {
+    calculateDaysSince,
+    getValue,
+    main,
+    run,
+    updatePosts
+};
