@@ -25,13 +25,13 @@ const calculateDaysSince = (date, now = new Date()) => {
 
 const getDays = (coreModule = core) => {
     const daysInput = coreModule.getInput('days');
-    const days = Number(daysInput);
+    const normalizedDaysInput = String(daysInput).trim();
 
-    if (!Number.isInteger(days) || days < 0) {
+    if (!/^\d+$/.test(normalizedDaysInput)) {
         throw new Error(`Invalid "days" input: "${daysInput}". Expected a non-negative integer.`);
     }
 
-    return days;
+    return Number.parseInt(normalizedDaysInput, 10);
 };
 
 const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {

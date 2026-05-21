@@ -35,9 +35,12 @@ describe('calculateDaysSince', () => {
 describe('getDays', () => {
     it('converts days input to a number', () => {
         expect(getDays(createCore({days: '30'}))).toBe(30);
+        expect(getDays(createCore({days: ' 30 '}))).toBe(30);
     });
 
     it('rejects invalid days input', () => {
+        expect(() => getDays(createCore({days: ''}))).toThrow('Invalid "days" input: ""');
+        expect(() => getDays(createCore({days: '   '}))).toThrow('Invalid "days" input: "   "');
         expect(() => getDays(createCore({days: '7.5'}))).toThrow('Invalid "days" input: "7.5"');
         expect(() => getDays(createCore({days: '-1'}))).toThrow('Invalid "days" input: "-1"');
         expect(() => getDays(createCore({days: 'tomorrow'}))).toThrow('Invalid "days" input: "tomorrow"');
