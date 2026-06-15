@@ -23,5 +23,5 @@ inputs:
     description: 'Number of days after the post was published to update the post'
     required: true
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
