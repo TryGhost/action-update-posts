@@ -15,6 +15,8 @@ Ghost Admin API. See `README.md` for user-facing setup and workflow examples.
   and semver tag.
 - `pnpm ship` runs `preship`, then pushes the current branch and tags when HEAD
   already has a `vX.Y.Z` tag.
+- `docs/release.md` documents the full two-step publishing flow and the
+  floating major-tag workflow.
 
 ## Boundaries
 
