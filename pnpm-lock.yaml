@@ -22,10 +22,10 @@ importers:
         specifier: 4.1.9
         version: 4.1.9(vitest@4.1.9)
       oxfmt:
-        specifier: ^0.56.0
+        specifier: 0.56.0
         version: 0.56.0
       oxlint:
-        specifier: ^1.71.0
+        specifier: 1.71.0
         version: 1.71.0
       vitest:
         specifier: 4.1.9
