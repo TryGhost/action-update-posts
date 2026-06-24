@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
 import * as core from '@actions/core';
 import GhostAdminApi from '@tryghost/admin-api';
-import {fileURLToPath} from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
@@ -35,32 +34,48 @@ export const getDays = (coreModule = core) => {
     return Number.parseInt(normalizedDaysInput, 10);
 };
 
-export const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
-    const posts = await api.posts.browse({filter: `tag:${tag}`});
+export const updatePosts = async ({
+    api,
+    tag,
+    field,
+    value,
+    days,
+    now = new Date(),
+    logger = console,
+}) => {
+    const posts = await api.posts.browse({ filter: `tag:${tag}` });
 
-    await Promise.all(posts.map(async (post) => {
-        const differenceInDays = calculateDaysSince(post.published_at, now);
+    await Promise.all(
+        posts.map(async (post) => {
+            const differenceInDays = calculateDaysSince(post.published_at, now);
 
-        logger.log(`Post "${post.title}" published ${differenceInDays} days ago`);
+            logger.log(`Post "${post.title}" published ${differenceInDays} days ago`);
 
-        // If enough days have passed, we will update the post
-        if (differenceInDays > days) {
-            post[field] = value;
-            logger.log(`Updating post "${post.title}"`);
-            await api.posts.edit(post);
+            // If enough days have passed, we will update the post
+            if (differenceInDays > days) {
+                post[field] = value;
+                logger.log(`Updating post "${post.title}"`);
+                await api.posts.edit(post);
 
-            return;
-        }
+                return;
+            }
 
-        logger.log(`Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`);
-    }));
+            logger.log(
+                `Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`,
+            );
+        }),
+    );
 };
 
-export const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi, logger = console} = {}) => {
+export const run = async ({
+    coreModule = core,
+    GhostAdminApiClass = GhostAdminApi,
+    logger = console,
+} = {}) => {
     const api = new GhostAdminApiClass({
         url: coreModule.getInput('api-url'),
         key: coreModule.getInput('api-key'),
-        version: 'canary'
+        version: 'canary',
     });
 
     await updatePosts({
@@ -69,7 +84,7 @@ export const run = async ({coreModule = core, GhostAdminApiClass = GhostAdminApi
         field: coreModule.getInput('field'),
         value: getValue(coreModule),
         days: getDays(coreModule),
-        logger
+        logger,
     });
 };
 

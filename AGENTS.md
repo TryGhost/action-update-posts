@@ -5,7 +5,9 @@ Ghost Admin API. See `README.md` for user-facing setup and workflow examples.
 
 - `pnpm build` refreshes `dist/index.js` from `index.js`; commit the generated
   bundle whenever runtime code or dependencies change.
-- `pnpm lint` runs ESLint with the Ghost ruleset.
+- `pnpm lint` runs oxlint and checks formatting with oxfmt.
+- `pnpm lint:fix` applies oxlint fixes and oxfmt formatting.
+- `pnpm format` runs oxfmt over the supported source files.
 - `pnpm test` runs Vitest with coverage; CI expects at least 80% statements,
   branches, functions, and lines.
 - `pnpm preship` is the local CI equivalent before publishing.

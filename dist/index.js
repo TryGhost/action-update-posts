@@ -48598,7 +48598,6 @@ var admin_api = __nccwpck_require__(1697);
 // EXTERNAL MODULE: external "node:url"
 var external_node_url_ = __nccwpck_require__(3136);
 ;// CONCATENATED MODULE: ./index.js
-/* eslint-disable no-console */
 
 
 
@@ -48635,32 +48634,48 @@ const getDays = (coreModule = core_namespaceObject) => {
     return Number.parseInt(normalizedDaysInput, 10);
 };
 
-const updatePosts = async ({api, tag, field, value, days, now = new Date(), logger = console}) => {
-    const posts = await api.posts.browse({filter: `tag:${tag}`});
+const updatePosts = async ({
+    api,
+    tag,
+    field,
+    value,
+    days,
+    now = new Date(),
+    logger = console,
+}) => {
+    const posts = await api.posts.browse({ filter: `tag:${tag}` });
 
-    await Promise.all(posts.map(async (post) => {
-        const differenceInDays = calculateDaysSince(post.published_at, now);
+    await Promise.all(
+        posts.map(async (post) => {
+            const differenceInDays = calculateDaysSince(post.published_at, now);
 
-        logger.log(`Post "${post.title}" published ${differenceInDays} days ago`);
+            logger.log(`Post "${post.title}" published ${differenceInDays} days ago`);
 
-        // If enough days have passed, we will update the post
-        if (differenceInDays > days) {
-            post[field] = value;
-            logger.log(`Updating post "${post.title}"`);
-            await api.posts.edit(post);
+            // If enough days have passed, we will update the post
+            if (differenceInDays > days) {
+                post[field] = value;
+                logger.log(`Updating post "${post.title}"`);
+                await api.posts.edit(post);
 
-            return;
-        }
+                return;
+            }
 
-        logger.log(`Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`);
-    }));
+            logger.log(
+                `Not updating post "${post.title}", ${days - differenceInDays + 1} days to go`,
+            );
+        }),
+    );
 };
 
-const run = async ({coreModule = core_namespaceObject, GhostAdminApiClass = admin_api, logger = console} = {}) => {
+const run = async ({
+    coreModule = core_namespaceObject,
+    GhostAdminApiClass = admin_api,
+    logger = console,
+} = {}) => {
     const api = new GhostAdminApiClass({
         url: coreModule.getInput('api-url'),
         key: coreModule.getInput('api-key'),
-        version: 'canary'
+        version: 'canary',
     });
 
     await updatePosts({
@@ -48669,7 +48684,7 @@ const run = async ({coreModule = core_namespaceObject, GhostAdminApiClass = admi
         field: coreModule.getInput('field'),
         value: getValue(coreModule),
         days: getDays(coreModule),
-        logger
+        logger,
     });
 };
 
