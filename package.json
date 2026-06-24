@@ -12,7 +12,9 @@
   },
   "scripts": {
     "build": "ncc build",
-    "lint": "eslint . --cache",
+    "lint": "oxlint --quiet && oxfmt --check .",
+    "lint:fix": "oxlint --fix && oxfmt .",
+    "format": "oxfmt .",
     "test": "vitest run --coverage",
     "preship": "pnpm build && pnpm lint && pnpm test",
     "ship:version": "sh -c 'if [ \"$#\" -ne 1 ]; then echo \"Usage: pnpm ship:version <major|minor|patch|version>\"; exit 1; fi; pnpm version \"$1\" --message \"v%s\"' --",
@@ -23,12 +25,10 @@
     "lib"
   ],
   "devDependencies": {
-    "@eslint/eslintrc": "3.3.5",
-    "@eslint/js": "10.0.1",
     "@vercel/ncc": "0.44.0",
     "@vitest/coverage-v8": "4.1.9",
-    "eslint": "10.5.0",
-    "eslint-plugin-ghost": "3.5.0",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
     "vitest": "4.1.9"
   },
   "dependencies": {
