@@ -4,17 +4,19 @@
   "repository": "git@github.com:TryGhost/action-update-posts.git",
   "author": "Ghost Foundation",
   "license": "MIT",
+  "packageManager": "pnpm@11.9.0",
   "type": "module",
   "main": "index.js",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "build": "ncc build",
     "lint": "eslint . --cache",
     "test": "vitest run --coverage",
-    "preship": "yarn build && yarn lint && yarn test",
-    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi"
+    "preship": "pnpm build && pnpm lint && pnpm test",
+    "ship:version": "sh -c 'if [ \"$#\" -ne 1 ]; then echo \"Usage: pnpm ship:version <major|minor|patch|version>\"; exit 1; fi; pnpm version \"$1\" --message \"v%s\"' --",
+    "ship": "STATUS=$(git status --porcelain); echo \"$STATUS\"; if [ -n \"$STATUS\" ]; then echo \"Uncommitted changes present. Commit or stash changes before shipping.\"; exit 1; fi; TAG=$(git tag --points-at HEAD | grep -E \"^v[0-9]+\\.[0-9]+\\.[0-9]+$\" | head -n 1); if [ -z \"$TAG\" ]; then echo \"No vX.Y.Z tag points at HEAD. Run pnpm ship:version <major|minor|patch|version> first.\"; exit 1; fi; git push --follow-tags"
   },
   "files": [
     "index.js",
