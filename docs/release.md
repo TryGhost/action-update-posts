@@ -3,37 +3,19 @@
 This repository publishes versioned GitHub Action tags. Consumers normally use
 the floating major tag, for example `TryGhost/action-update-posts@v0`.
 
-Publishing is intentionally split into two steps:
-
-1. Define the next version with `pnpm ship:version`.
-2. Ship the already-tagged release commit with `pnpm ship`.
-
-## Define the version
-
-Use `pnpm ship:version` with exactly one version argument:
+Publishing is handled by `@tryghost/pro-ship` through the repo's `ship` script:
 
 ```sh
-pnpm ship:version patch
-pnpm ship:version minor
-pnpm ship:version major
-pnpm ship:version 0.1.0
-```
-
-The command delegates to `pnpm version`, creates the version commit, and creates
-the matching `vX.Y.Z` tag. Review the resulting commit and tag before shipping.
-
-## Ship the release
-
-After the version commit and tag exist on `HEAD`, run:
-
-```sh
-pnpm ship
+pnpm ship patch
+pnpm ship minor
+pnpm ship major
+pnpm ship 0.1.0
 ```
 
 The `ship` script runs the `preship` lifecycle first, so it verifies the build,
-lint, and test suite before pushing. It then checks that the working tree is
-clean and that `HEAD` has a full semver tag such as `v0.0.5`, then pushes the
-current branch and tags with `git push --follow-tags`.
+lint, and test suite before releasing. `pro-ship` then runs `pnpm version`,
+creates the matching `vX.Y.Z` release commit and tag, and pushes with
+`git push --follow-tags`. The command only succeeds from a clean working tree.
 
 ## Major tag
 

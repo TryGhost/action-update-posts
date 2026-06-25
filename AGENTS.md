@@ -11,11 +11,9 @@ Ghost Admin API. See `README.md` for user-facing setup and workflow examples.
 - `pnpm test` runs Vitest with coverage; CI expects at least 80% statements,
   branches, functions, and lines.
 - `pnpm preship` is the local CI equivalent before publishing.
-- `pnpm ship:version <patch|minor|major|version>` creates the release commit
-  and semver tag.
-- `pnpm ship` runs `preship`, then pushes the current branch and tags when HEAD
-  already has a `vX.Y.Z` tag.
-- `docs/release.md` documents the full two-step publishing flow and the
+- `pnpm ship <patch|minor|major|version>` runs `preship`, then delegates to
+  `@tryghost/pro-ship` to create the release commit, semver tag, and push.
+- `docs/release.md` documents the publishing flow and the
   floating major-tag workflow.
 
 ## Boundaries
