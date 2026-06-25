@@ -17,14 +17,14 @@
     "format": "oxfmt .",
     "test": "vitest run --coverage",
     "preship": "pnpm build && pnpm lint && pnpm test",
-    "ship:version": "sh -c 'if [ \"$#\" -ne 1 ]; then echo \"Usage: pnpm ship:version <major|minor|patch|version>\"; exit 1; fi; pnpm version \"$1\" --message \"v%s\"' --",
-    "ship": "STATUS=$(git status --porcelain); echo \"$STATUS\"; if [ -n \"$STATUS\" ]; then echo \"Uncommitted changes present. Commit or stash changes before shipping.\"; exit 1; fi; TAG=$(git tag --points-at HEAD | grep -E \"^v[0-9]+\\.[0-9]+\\.[0-9]+$\" | head -n 1); if [ -z \"$TAG\" ]; then echo \"No vX.Y.Z tag points at HEAD. Run pnpm ship:version <major|minor|patch|version> first.\"; exit 1; fi; git push --follow-tags"
+    "ship": "pro-ship"
   },
   "files": [
     "index.js",
     "lib"
   ],
   "devDependencies": {
+    "@tryghost/pro-ship": "1.1.2",
     "@vercel/ncc": "0.44.0",
     "@vitest/coverage-v8": "4.1.9",
     "oxfmt": "0.56.0",
