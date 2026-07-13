@@ -83,8 +83,10 @@ with:
 
 ## Development
 
-This action runs on Node.js 24 in GitHub Actions and uses pnpm for local
-development.
+In GitHub Actions the action runs on the Node.js 24 runtime (set by
+`runs.using: node24` in `action.yml`). Local development supports Node.js
+22.13.0 or newer (see `engines` in `package.json`), and CI runs the tests on
+both Node.js 22 and 24. It uses pnpm for local development.
 
 ```sh
 pnpm install --frozen-lockfile

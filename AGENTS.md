@@ -23,7 +23,9 @@ Ghost Admin API. See `README.md` for user-facing setup and workflow examples.
 - CI fails pull requests whose committed `dist/index.js` is stale. Renovate
   PRs are exempt; `.github/workflows/sync-dist.yml` rebuilds `dist/` on `main`
   after they merge (requires the `SYNC_DIST_GH_TOKEN` repository secret).
-- Do not commit real Ghost Admin API URLs or keys. Tests should use mocked
-  `core` and Admin API modules, as in `index.test.mjs`.
+- Do not commit real Ghost Admin API URLs or keys. `index.test.mjs` holds unit
+  tests with mocked `core` and Admin API modules; `action.test.mjs` is an
+  acceptance test that runs the bundled `dist/index.js` against a local mock
+  Admin API server. Follow those patterns rather than using real credentials.
 - Keep `CLAUDE.md` as the symlink to this file rather than duplicating agent
   instructions.
