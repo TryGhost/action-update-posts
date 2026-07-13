@@ -50,7 +50,40 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: git diff --exit-code -- dist/
+      # Renovate never rebuilds `dist/`, so same-repo Renovate changes skip
+      # the freshness check; the sync-dist workflow repairs main after merge.
+      - name: Compare expected and actual dist
+        if: >-
+          ${{
+            (
+              github.event_name == 'pull_request' &&
+              (
+                github.event.pull_request.user.login != 'renovate[bot]' ||
+                github.event.pull_request.head.repo.full_name != github.repository ||
+                !startsWith(github.head_ref, 'renovate/')
+              )
+            ) ||
+            (
+              github.event_name == 'push' &&
+              !startsWith(github.ref_name, 'renovate/')
+            )
+          }}
+        run: git diff --exit-code -- dist/
+      - name: Apply Renovate dist exemption
+        if: >-
+          ${{
+            (
+              github.event_name == 'pull_request' &&
+              github.event.pull_request.user.login == 'renovate[bot]' &&
+              github.event.pull_request.head.repo.full_name == github.repository &&
+              startsWith(github.head_ref, 'renovate/')
+            ) ||
+            (
+              github.event_name == 'push' &&
+              startsWith(github.ref_name, 'renovate/')
+            )
+          }}
+        run: echo "Renovate changes are rebuilt by the sync-dist workflow after merge."
   required-checks-pass:
     name: Required checks pass
     if: always()

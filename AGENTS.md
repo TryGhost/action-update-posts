@@ -20,6 +20,9 @@ Ghost Admin API. See `README.md` for user-facing setup and workflow examples.
 
 - Do not edit `dist/index.js` by hand. Change `index.js`, then run
   `pnpm build`.
+- CI fails pull requests whose committed `dist/index.js` is stale. Renovate
+  PRs are exempt; `.github/workflows/sync-dist.yml` rebuilds `dist/` on `main`
+  after they merge (requires the `SYNC_DIST_GH_TOKEN` repository secret).
 - Do not commit real Ghost Admin API URLs or keys. Tests should use mocked
   `core` and Admin API modules, as in `index.test.mjs`.
 - Keep `CLAUDE.md` as the symlink to this file rather than duplicating agent
