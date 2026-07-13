@@ -171,4 +171,25 @@ describe('GitHub Action boundary', () => {
             await close(server);
         }
     });
+
+    it('exits non-zero and reports the error when the Ghost Admin API is unreachable', async () => {
+        // Point the action at a port with no listener so the browse request
+        // fails, driving the bundled main() catch path through process.exit(1).
+        const server = http.createServer();
+        const { port } = await listen(server);
+
+        await close(server);
+
+        const result = await runAction({
+            'INPUT_API-URL': `http://127.0.0.1:${port}`,
+            'INPUT_API-KEY': adminApiKey,
+            INPUT_TAG: 'hash-featured',
+            INPUT_FIELD: 'featured',
+            INPUT_VALUE: 'false',
+            INPUT_DAYS: '30',
+        });
+
+        expect(result.code).not.toBe(0);
+        expect(result.stderr).not.toBe('');
+    });
 });
