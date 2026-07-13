@@ -1,3 +1,7 @@
+# form-data < 4.0.6 has a CRLF-injection vulnerability (Dependabot alert #92)
+overrides:
+  form-data: '>=4.0.6'
+
 minimumReleaseAgeExclude:
   - '@tryghost/pro-ship@1.1.2'
   - '@tryghost/root-utils@2.3.1'
