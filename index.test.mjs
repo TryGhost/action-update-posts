@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from 'vitest';
-import { calculateDaysSince, getDays, getValue, run, updatePosts } from './index.js';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { calculateDaysSince, getDays, getValue, main, run, updatePosts } from './index.js';
 
 const createCore = (inputs) => ({
     getInput: vi.fn((name) => inputs[name]),
@@ -147,5 +147,25 @@ describe('run', () => {
             ...post,
             featured: false,
         });
+    });
+});
+
+describe('main', () => {
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
+    it('logs the error and exits non-zero when run() rejects', async () => {
+        // With no api-url input, the Ghost Admin API constructor throws
+        // synchronously, so run() rejects before any network call is made.
+        delete process.env['INPUT_API-URL'];
+        const exitSpy = vi.spyOn(process, 'exit').mockImplementation(() => undefined);
+        const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+        await main();
+
+        expect(errorSpy).toHaveBeenCalledOnce();
+        expect(errorSpy.mock.calls[0][0]).toBeInstanceOf(Error);
+        expect(exitSpy).toHaveBeenCalledWith(1);
     });
 });
