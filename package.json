@@ -27,7 +27,7 @@
     "@tryghost/pro-ship": "1.1.7",
     "@vercel/ncc": "0.44.1",
     "@vitest/coverage-v8": "4.1.10",
-    "oxfmt": "0.58.0",
+    "oxfmt": "0.59.0",
     "oxlint": "1.73.0",
     "vitest": "4.1.10"
   },
