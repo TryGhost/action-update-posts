@@ -1,24 +1,24 @@
 import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
 /******/ var __webpack_modules__ = ({
 
-/***/ 3591:
+/***/ 8383:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = __nccwpck_require__(6881);
+module.exports = __nccwpck_require__(1785);
 
 
 /***/ }),
 
-/***/ 6881:
+/***/ 1785:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /* eslint-disable no-restricted-syntax */
-const axios = __nccwpck_require__(8259);
+const axios = __nccwpck_require__(6219);
 const FormData = __nccwpck_require__(4044);
 const fs = __nccwpck_require__(9896);
-const token = __nccwpck_require__(9450);
+const token = __nccwpck_require__(8546);
 
-const packageInfo = __nccwpck_require__(606);
+const packageInfo = __nccwpck_require__(2702);
 const packageVersion = packageInfo.version;
 
 // NOTE: bump this default when major versions are released
@@ -501,7 +501,7 @@ module.exports = function GhostAdminAPI(options) {
 
 /***/ }),
 
-/***/ 9450:
+/***/ 8546:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const jwt = __nccwpck_require__(6265);
@@ -526,7 +526,7 @@ module.exports = function token(key, audience) {
 
 /***/ }),
 
-/***/ 2137:
+/***/ 133:
 /***/ (function(module, __unused_webpack_exports, __nccwpck_require__) {
 
 
@@ -534,8 +534,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const events_1 = __nccwpck_require__(4434);
-const debug_1 = __importDefault(__nccwpck_require__(7287));
-const promisify_1 = __importDefault(__nccwpck_require__(6977));
+const debug_1 = __importDefault(__nccwpck_require__(1141));
+const promisify_1 = __importDefault(__nccwpck_require__(9965));
 const debug = debug_1.default('agent-base');
 function isAgent(v) {
     return Boolean(v) && typeof v.addRequest === 'function';
@@ -735,7 +735,7 @@ module.exports = createAgent;
 
 /***/ }),
 
-/***/ 6977:
+/***/ 9965:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -1535,7 +1535,7 @@ CombinedStream.prototype._emitError = function(err) {
 
 /***/ }),
 
-/***/ 9547:
+/***/ 245:
 /***/ ((module, exports, __nccwpck_require__) => {
 
 /* eslint-env browser */
@@ -1795,7 +1795,7 @@ function localstorage() {
 	}
 }
 
-module.exports = __nccwpck_require__(2998)(exports);
+module.exports = __nccwpck_require__(9620)(exports);
 
 const {formatters} = module.exports;
 
@@ -1814,7 +1814,7 @@ formatters.j = function (v) {
 
 /***/ }),
 
-/***/ 2998:
+/***/ 9620:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
@@ -2113,7 +2113,7 @@ module.exports = setup;
 
 /***/ }),
 
-/***/ 7287:
+/***/ 1141:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /**
@@ -2122,15 +2122,15 @@ module.exports = setup;
  */
 
 if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
-	module.exports = __nccwpck_require__(9547);
+	module.exports = __nccwpck_require__(245);
 } else {
-	module.exports = __nccwpck_require__(6455);
+	module.exports = __nccwpck_require__(4093);
 }
 
 
 /***/ }),
 
-/***/ 6455:
+/***/ 4093:
 /***/ ((module, exports, __nccwpck_require__) => {
 
 /**
@@ -2372,7 +2372,7 @@ function init(debug) {
 	}
 }
 
-module.exports = __nccwpck_require__(2998)(exports);
+module.exports = __nccwpck_require__(9620)(exports);
 
 const {formatters} = module.exports;
 
@@ -2926,7 +2926,7 @@ module.exports = function setToStringTag(object, value) {
 
 /***/ }),
 
-/***/ 2646:
+/***/ 5002:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 var debug;
@@ -2935,7 +2935,7 @@ module.exports = function () {
   if (!debug) {
     try {
       /* eslint global-require: off */
-      debug = __nccwpck_require__(7287)("follow-redirects");
+      debug = __nccwpck_require__(1141)("follow-redirects");
     }
     catch (error) { /* */ }
     if (typeof debug !== "function") {
@@ -2948,7 +2948,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 4073:
+/***/ 2085:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 var url = __nccwpck_require__(7016);
@@ -2957,7 +2957,7 @@ var http = __nccwpck_require__(8611);
 var https = __nccwpck_require__(5692);
 var Writable = (__nccwpck_require__(2203).Writable);
 var assert = __nccwpck_require__(2613);
-var debug = __nccwpck_require__(2646);
+var debug = __nccwpck_require__(5002);
 
 // Preventive platform detection
 // istanbul ignore next
@@ -4891,7 +4891,7 @@ module.exports = bind.call(call, $hasOwn);
 
 /***/ }),
 
-/***/ 9437:
+/***/ 2255:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -4912,9 +4912,9 @@ const net_1 = __importDefault(__nccwpck_require__(9278));
 const tls_1 = __importDefault(__nccwpck_require__(4756));
 const url_1 = __importDefault(__nccwpck_require__(7016));
 const assert_1 = __importDefault(__nccwpck_require__(2613));
-const debug_1 = __importDefault(__nccwpck_require__(7287));
-const agent_base_1 = __nccwpck_require__(2137);
-const parse_proxy_response_1 = __importDefault(__nccwpck_require__(1688));
+const debug_1 = __importDefault(__nccwpck_require__(1141));
+const agent_base_1 = __nccwpck_require__(133);
+const parse_proxy_response_1 = __importDefault(__nccwpck_require__(834));
 const debug = debug_1.default('https-proxy-agent:agent');
 /**
  * The `HttpsProxyAgent` implements an HTTP Agent subclass that connects to
@@ -5074,14 +5074,14 @@ function omit(obj, ...keys) {
 
 /***/ }),
 
-/***/ 3708:
+/***/ 8426:
 /***/ (function(module, __unused_webpack_exports, __nccwpck_require__) {
 
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const agent_1 = __importDefault(__nccwpck_require__(9437));
+const agent_1 = __importDefault(__nccwpck_require__(2255));
 function createHttpsProxyAgent(opts) {
     return new agent_1.default(opts);
 }
@@ -5094,7 +5094,7 @@ module.exports = createHttpsProxyAgent;
 
 /***/ }),
 
-/***/ 1688:
+/***/ 834:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
@@ -5102,7 +5102,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const debug_1 = __importDefault(__nccwpck_require__(7287));
+const debug_1 = __importDefault(__nccwpck_require__(1141));
 const debug = debug_1.default('https-proxy-agent:parse-proxy-response');
 function parseProxyResponse(socket) {
     return new Promise((resolve, reject) => {
@@ -39872,7 +39872,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
 
 /***/ }),
 
-/***/ 8259:
+/***/ 6219:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /*! Axios v1.18.1 Copyright (c) 2026 Matt Zabriskie and contributors */
@@ -39881,13 +39881,13 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
 var FormData$1 = __nccwpck_require__(4044);
 var crypto = __nccwpck_require__(6982);
 var url = __nccwpck_require__(7016);
-var HttpsProxyAgent = __nccwpck_require__(3708);
+var HttpsProxyAgent = __nccwpck_require__(8426);
 var http = __nccwpck_require__(8611);
 var https = __nccwpck_require__(5692);
 var http2 = __nccwpck_require__(5675);
 var util = __nccwpck_require__(9023);
 var path = __nccwpck_require__(6928);
-var followRedirects = __nccwpck_require__(4073);
+var followRedirects = __nccwpck_require__(2085);
 var zlib = __nccwpck_require__(3106);
 var stream = __nccwpck_require__(2203);
 var events = __nccwpck_require__(4434);
@@ -45875,7 +45875,7 @@ module.exports = axios;
 
 /***/ }),
 
-/***/ 606:
+/***/ 2702:
 /***/ ((module) => {
 
 module.exports = /*#__PURE__*/JSON.parse('{"name":"@tryghost/admin-api","version":"1.14.11","repository":{"type":"git","url":"git+https://github.com/TryGhost/SDK.git","directory":"packages/admin-api"},"author":"Ghost Foundation","license":"MIT","main":"index.js","files":["LICENSE","README.md","cjs/","lib/","index.js"],"scripts":{"dev":"echo \\"Implement me!\\"","test":"NODE_ENV=testing c8 --reporter text --reporter cobertura mocha \'./test/**/*.test.js\'","lint":"eslint . --ext .js --cache","posttest":"yarn lint"},"publishConfig":{"access":"public"},"devDependencies":{"c8":"11.0.0","mocha":"11.7.6","should":"13.2.3","sinon":"22.0.0"},"dependencies":{"axios":"1.18.1","form-data":"4.0.6","jsonwebtoken":"9.0.3"},"gitHead":"8a12adf55e9ba57487819cf2fcd8951c9c5a17b4"}');
@@ -48990,8 +48990,8 @@ function getIDToken(aud) {
  */
 
 //# sourceMappingURL=core.js.map
-// EXTERNAL MODULE: ./node_modules/.pnpm/@tryghost+admin-api@1.14.11/node_modules/@tryghost/admin-api/index.js
-var admin_api = __nccwpck_require__(3591);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@tryghost+admin-api@1.14.11_debug@4.4.3_supports-color@7.2.0__supports-color@7.2.0/node_modules/@tryghost/admin-api/index.js
+var admin_api = __nccwpck_require__(8383);
 // EXTERNAL MODULE: external "node:url"
 var external_node_url_ = __nccwpck_require__(3136);
 ;// CONCATENATED MODULE: ./index.js
