@@ -24,7 +24,7 @@
     "lib"
   ],
   "devDependencies": {
-    "@tryghost/pro-ship": "1.1.7",
+    "@tryghost/pro-ship": "1.1.8",
     "@vercel/ncc": "0.45.0",
     "@vitest/coverage-v8": "4.1.11",
     "oxfmt": "0.63.0",
