@@ -72,9 +72,12 @@ export const run = async ({
     GhostAdminApiClass = GhostAdminApi,
     logger = console,
 } = {}) => {
+    const apiKey = coreModule.getInput('api-key');
+    coreModule.setSecret(apiKey);
+
     const api = new GhostAdminApiClass({
         url: coreModule.getInput('api-url'),
-        key: coreModule.getInput('api-key'),
+        key: apiKey,
         version: 'canary',
     });
 
