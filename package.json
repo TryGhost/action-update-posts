@@ -28,7 +28,7 @@
     "@vercel/ncc": "0.45.0",
     "@vitest/coverage-v8": "5.0.3",
     "oxfmt": "0.72.0",
-    "oxlint": "1.86.0",
+    "oxlint": "1.87.0",
     "vitest": "5.0.3"
   },
   "dependencies": {
