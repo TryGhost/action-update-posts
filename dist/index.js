@@ -1,24 +1,24 @@
 import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
 /******/ var __webpack_modules__ = ({
 
-/***/ 6530:
+/***/ 6737:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = __nccwpck_require__(8768);
+module.exports = __nccwpck_require__(7667);
 
 
 /***/ }),
 
-/***/ 8768:
+/***/ 7667:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /* eslint-disable no-restricted-syntax */
 const axios = __nccwpck_require__(4178);
 const FormData = __nccwpck_require__(7928);
 const fs = __nccwpck_require__(9896);
-const token = __nccwpck_require__(4803);
+const token = __nccwpck_require__(3236);
 
-const packageInfo = __nccwpck_require__(2999);
+const packageInfo = __nccwpck_require__(2132);
 const packageVersion = packageInfo.version;
 
 // NOTE: bump this default when major versions are released
@@ -505,7 +505,7 @@ module.exports = function GhostAdminAPI(options) {
 
 /***/ }),
 
-/***/ 4803:
+/***/ 3236:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const jwt = __nccwpck_require__(3597);
@@ -46934,10 +46934,10 @@ module.exports = axios;
 
 /***/ }),
 
-/***/ 2999:
+/***/ 2132:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@tryghost/admin-api","version":"1.14.13","repository":{"type":"git","url":"git+https://github.com/TryGhost/SDK.git","directory":"packages/admin-api"},"author":"Ghost Foundation","license":"MIT","main":"index.js","files":["LICENSE","README.md","cjs/","lib/","index.js"],"scripts":{"dev":"echo \\"Implement me!\\"","test":"NODE_ENV=testing c8 --reporter text --reporter cobertura mocha \'./test/**/*.test.js\'","lint":"eslint . --ext .js --cache","posttest":"yarn lint"},"publishConfig":{"access":"public"},"devDependencies":{"c8":"12.0.0","mocha":"12.0.2","should":"13.2.3","sinon":"22.1.0"},"dependencies":{"axios":"1.20.0","form-data":"4.0.6","jsonwebtoken":"9.0.3"},"gitHead":"ef821dd12350809dff695488161e04353a893af1"}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@tryghost/admin-api","version":"1.14.14","repository":{"type":"git","url":"git+https://github.com/TryGhost/SDK.git","directory":"packages/admin-api"},"author":"Ghost Foundation","license":"MIT","main":"index.js","files":["LICENSE","README.md","cjs/","lib/","index.js"],"scripts":{"dev":"echo \\"Implement me!\\"","test":"NODE_ENV=testing c8 --reporter text --reporter cobertura mocha \'./test/**/*.test.js\'","lint":"eslint . --ext .js --cache","posttest":"yarn lint"},"publishConfig":{"access":"public"},"devDependencies":{"c8":"12.0.0","mocha":"12.0.3","should":"13.2.3","sinon":"22.1.0"},"dependencies":{"axios":"1.20.0","form-data":"4.0.6","jsonwebtoken":"9.0.3"},"gitHead":"f5d0c3788e8e9eb571ba6f0abd4d45fe52a3c6fc"}');
 
 /***/ }),
 
@@ -50048,8 +50048,8 @@ function getIDToken(aud) {
  */
 
 //# sourceMappingURL=core.js.map
-// EXTERNAL MODULE: ./node_modules/.pnpm/@tryghost+admin-api@1.14.13_debug@4.4.3/node_modules/@tryghost/admin-api/index.js
-var admin_api = __nccwpck_require__(6530);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@tryghost+admin-api@1.14.14_debug@4.4.3/node_modules/@tryghost/admin-api/index.js
+var admin_api = __nccwpck_require__(6737);
 // EXTERNAL MODULE: external "node:url"
 var external_node_url_ = __nccwpck_require__(3136);
 ;// CONCATENATED MODULE: ./index.js
