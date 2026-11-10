@@ -3,9 +3,15 @@ on:
   push:
     tags:
       - "v*"
+
+permissions: {}
+
 jobs:
   update-major:
     name: Update Major Version Tag
     runs-on: ubuntu-latest
+    permissions:
+      # Required to force-push the floating major tag (e.g. v1).
+      contents: write
     steps:
       - uses: nowactions/update-majorver@8015d1f776da5d9af4d1318a4253758189171bfd
