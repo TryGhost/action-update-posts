@@ -24,7 +24,7 @@
     "lib"
   ],
   "devDependencies": {
-    "@tryghost/pro-ship": "2.0.1",
+    "@tryghost/pro-ship": "2.0.4",
     "@vercel/ncc": "0.45.0",
     "@vitest/coverage-v8": "5.1.0",
     "oxfmt": "0.76.0",
@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "@actions/core": "3.0.1",
-    "@tryghost/admin-api": "1.14.14"
+    "@tryghost/admin-api": "1.14.16"
   }
 }
