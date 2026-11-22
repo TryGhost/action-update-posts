@@ -26,10 +26,10 @@
   "devDependencies": {
     "@tryghost/pro-ship": "2.0.4",
     "@vercel/ncc": "0.45.0",
-    "@vitest/coverage-v8": "5.1.0",
+    "@vitest/coverage-v8": "5.1.1",
     "oxfmt": "0.78.0",
     "oxlint": "1.93.0",
-    "vitest": "5.1.0"
+    "vitest": "5.1.1"
   },
   "dependencies": {
     "@actions/core": "3.0.1",
