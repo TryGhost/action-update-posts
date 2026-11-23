@@ -2933,7 +2933,7 @@ module.exports = function setToStringTag(object, value) {
 
 /***/ }),
 
-/***/ 6465:
+/***/ 4862:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 var debug;
@@ -2955,7 +2955,7 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 8726:
+/***/ 129:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 var url = __nccwpck_require__(7016);
@@ -2964,7 +2964,7 @@ var http = __nccwpck_require__(8611);
 var https = __nccwpck_require__(5692);
 var Writable = (__nccwpck_require__(2203).Writable);
 var assert = __nccwpck_require__(2613);
-var debug = __nccwpck_require__(6465);
+var debug = __nccwpck_require__(4862);
 
 // Preventive platform detection
 // istanbul ignore next
@@ -3666,7 +3666,8 @@ function isURL(value) {
 }
 
 function escapeRegex(regex) {
-  return regex.replace(/[[\]\\/()*+?.^$|]/g, "\\$&");
+  // As per https://tc39.es/proposal-regexp-modifiers/#prod-SyntaxCharacter
+  return regex.replace(/[\^$\\.*+?()[\]{}|]/g, "\\$&");
 }
 
 // Exports
@@ -10513,7 +10514,7 @@ const validRange = __nccwpck_require__(7705)
 const outside = __nccwpck_require__(5472)
 const gtr = __nccwpck_require__(940)
 const ltr = __nccwpck_require__(9605)
-const intersects = __nccwpck_require__(8846)
+const intersects = __nccwpck_require__(6465)
 const simplifyRange = __nccwpck_require__(7076)
 const subset = __nccwpck_require__(6585)
 module.exports = {
@@ -11457,7 +11458,7 @@ module.exports = gtr
 
 /***/ }),
 
-/***/ 8846:
+/***/ 6465:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
@@ -40712,7 +40713,7 @@ var https = __nccwpck_require__(5692);
 var http2 = __nccwpck_require__(5675);
 var util = __nccwpck_require__(9023);
 var path = __nccwpck_require__(6928);
-var followRedirects = __nccwpck_require__(8726);
+var followRedirects = __nccwpck_require__(129);
 var zlib = __nccwpck_require__(3106);
 var stream = __nccwpck_require__(2203);
 var events = __nccwpck_require__(4434);
